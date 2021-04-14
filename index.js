@@ -1,15 +1,10 @@
-/**
- * [Exercise 1] trimProperties copies an object trimming its properties
- * @param {object} obj - an object with properties that are strings
- * @returns {object} - a copy of the object with strings trimmed
- *
- * EXAMPLE
- * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
- */
 function trimProperties(obj) {
-  // ✨ implement
-}
 
+  for(let i in obj){
+    obj[i] = obj[i].trim()
+  }
+  return obj
+}
 /**
  * [Exercise 2] trimPropertiesMutation trims in place the properties of an object
  * @param {object} obj - an object with properties that are strings
