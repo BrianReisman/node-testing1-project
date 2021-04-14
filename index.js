@@ -7,9 +7,11 @@
  * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
  */
 function trimProperties(obj) {
-  // ✨ implement
+  for (let i in obj) {
+    obj[i] = obj[i].trim();
+  }
+  return { ...obj };
 }
-
 /**
  * [Exercise 2] trimPropertiesMutation trims in place the properties of an object
  * @param {object} obj - an object with properties that are strings
@@ -19,71 +21,57 @@ function trimProperties(obj) {
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
  */
 function trimPropertiesMutation(obj) {
-  // ✨ implement
+  for (let i in obj) {
+    obj[i] = obj[i].trim();
+  }
+  return obj;
 }
 
-/**
- * [Exercise 3] findLargestInteger finds the largest integer in an array of integers
- * @param {number[]} integers - an array of integers
- * @returns {number} - the largest integer
- *
- * EXAMPLE
- * findLargestInteger([2, 1, 7, 3, 14, 7]) // returns 14
- */
 function findLargestInteger(integers) {
-  // ✨ implement
+  const sortedArr = integers.sort((a, b) => b - a);
+  return sortedArr[0];
 }
+// console.log(findLargestInteger([5, 6, 57, 8, 9]));
 
 class Counter {
-  /**
-   * [Exercise 4A] Counter creates a counter
-   * @param {number} initialNumber - the initial state of the count
-   */
   constructor(initialNumber) {
-    // ✨ initialize whatever properties are needed
+    this.count = initialNumber;
   }
-
-  /**
-   * [Exercise 4B] Counter.prototype.countDown counts down to zero
-   * @returns {number} - the next count, does not go below zero
-   *
-   * EXAMPLE
-   * const counter = new Counter(3)
-   * counter.countDown() // returns 3
-   * counter.countDown() // returns 2
-   * counter.countDown() // returns 1
-   * counter.countDown() // returns 0
-   * counter.countDown() // returns 0
-   */
   countDown() {
-    // ✨ implement
+    if (this.count >= 0) {
+      return this.count--;
+    } else {
+      return 0;
+    }
   }
 }
+// const counter = new Counter(3);
+// console.log(counter.countDown());
+// console.log(counter.countDown());
+// console.log(counter.countDown());
+// console.log(counter.countDown());
+// console.log(counter.countDown());
 
 class Seasons {
-  /**
-   * [Exercise 5A] Seasons creates a seasons object
-   */
-  constructor() {
-    // ✨ initialize whatever properties are needed
+  constructor(season) {
+    this.season = season;
+    this.allSeasons = ["spring", "summer", "fall", "winter"];
   }
-
-  /**
-   * [Exercise 5B] Seasons.prototype.next returns the next season
-   * @returns {string} - the next season starting with "summer"
-   *
-   * EXAMPLE
-   * const seasons = new Seasons()
-   * seasons.next() // returns "summer"
-   * seasons.next() // returns "fall"
-   * seasons.next() // returns "winter"
-   * seasons.next() // returns "spring"
-   * seasons.next() // returns "summer"
-   */
   next() {
-    // ✨ implement
+    for(let i = 0; i < this.allSeasons.length; i++){
+      if(this.allSeasons[i] === this.season && i < 3){
+        this.season = this.allSeasons[i+1]
+        return(this.season)
+      } else if (this.allSeasons[i] === this.season && i === 3){
+        this.season = this.allSeasons[0]
+        return(this.season)
+      }
+    }
   }
 }
+const season = new Seasons("summer");
+// console.log(season.next());
+
 
 class Car {
   /**
@@ -93,8 +81,8 @@ class Car {
    * @param {number} mpg - miles the car can drive per gallon of gas
    */
   constructor(name, tankSize, mpg) {
-    this.odometer = 0 // car initilizes with zero miles
-    this.tank = tankSize // car initiazes full of gas
+    this.odometer = 0; // car initilizes with zero miles
+    this.tank = tankSize; // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
   }
 
@@ -162,4 +150,4 @@ module.exports = {
   Counter,
   Seasons,
   Car,
-}
+};
